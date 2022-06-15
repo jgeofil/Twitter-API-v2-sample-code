@@ -12,12 +12,7 @@ def create_url():
     # You can enter up to 100 comma-separated values.
     usernames = "usernames=TwitterDev,TwitterAPI"
     user_fields = "user.fields=description,created_at"
-    # User fields are adjustable, options include:
-    # created_at, description, entities, id, location, name,
-    # pinned_tweet_id, profile_image_url, protected,
-    # public_metrics, url, username, verified, and withheld
-    url = "https://api.twitter.com/2/users/by?{}&{}".format(usernames, user_fields)
-    return url
+    return f"https://api.twitter.com/2/users/by?{usernames}&{user_fields}"
 
 
 def bearer_oauth(r):
@@ -35,10 +30,9 @@ def connect_to_endpoint(url):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

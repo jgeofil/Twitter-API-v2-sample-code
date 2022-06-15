@@ -15,7 +15,7 @@ def create_url():
     user_fields = "user.fields=created_at,description,verified"
     # You can replace list-id with the List ID you wish to find followers of.
     id = "list-id"
-    url = "https://api.twitter.com/2/lists/{}/followers".format(id)
+    url = f"https://api.twitter.com/2/lists/{id}/followers"
     return url, user_fields
 
 
@@ -34,10 +34,9 @@ def connect_to_endpoint(url, user_fields):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

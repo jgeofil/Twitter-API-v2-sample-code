@@ -14,7 +14,7 @@ def create_url():
     list_fields = "list.fields=created_at,follower_count"
     # You can replace the ID given with the List ID you wish to lookup.
     id = "list-id"
-    url = "https://api.twitter.com/2/lists/{}".format(id)
+    url = f"https://api.twitter.com/2/lists/{id}"
     return url, list_fields
 
 
@@ -33,10 +33,9 @@ def connect_to_endpoint(url, list_fields):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

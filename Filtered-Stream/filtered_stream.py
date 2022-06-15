@@ -23,8 +23,9 @@ def get_rules():
     )
     if response.status_code != 200:
         raise Exception(
-            "Cannot get rules (HTTP {}): {}".format(response.status_code, response.text)
+            f"Cannot get rules (HTTP {response.status_code}): {response.text}"
         )
+
     print(json.dumps(response.json()))
     return response.json()
 
@@ -42,10 +43,9 @@ def delete_all_rules(rules):
     )
     if response.status_code != 200:
         raise Exception(
-            "Cannot delete rules (HTTP {}): {}".format(
-                response.status_code, response.text
-            )
+            f"Cannot delete rules (HTTP {response.status_code}): {response.text}"
         )
+
     print(json.dumps(response.json()))
 
 
@@ -63,8 +63,9 @@ def set_rules(delete):
     )
     if response.status_code != 201:
         raise Exception(
-            "Cannot add rules (HTTP {}): {}".format(response.status_code, response.text)
+            f"Cannot add rules (HTTP {response.status_code}): {response.text}"
         )
+
     print(json.dumps(response.json()))
 
 
@@ -75,10 +76,9 @@ def get_stream(set):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Cannot get stream (HTTP {}): {}".format(
-                response.status_code, response.text
-            )
+            f"Cannot get stream (HTTP {response.status_code}): {response.text}"
         )
+
     for response_line in response.iter_lines():
         if response_line:
             json_response = json.loads(response_line)

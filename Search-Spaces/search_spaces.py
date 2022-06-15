@@ -15,11 +15,10 @@ query_params = {'query': search_term, 'space.fields': 'title,created_at', 'expan
 
 
 def create_headers(bearer_token):
-    headers = {
-        "Authorization": "Bearer {}".format(bearer_token),
-        "User-Agent": "v2SpacesSearchPython"
+    return {
+        "Authorization": f"Bearer {bearer_token}",
+        "User-Agent": "v2SpacesSearchPython",
     }
-    return headers
 
 
 def connect_to_endpoint(url, headers, params):

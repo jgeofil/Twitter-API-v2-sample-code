@@ -10,7 +10,7 @@ bearer_token = os.environ.get("BEARER_TOKEN")
 def create_url():
     # Replace with user ID below
     user_id = 2244994945
-    return "https://api.twitter.com/2/users/{}/tweets".format(user_id)
+    return f"https://api.twitter.com/2/users/{user_id}/tweets"
 
 
 def get_params():
@@ -39,10 +39,9 @@ def connect_to_endpoint(url, params):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

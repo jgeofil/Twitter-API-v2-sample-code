@@ -13,7 +13,7 @@ def auth():
 def create_url():
     # Replace with Tweet ID below
     tweet_id = 20
-    return "https://api.twitter.com/2/tweets/{}/quote_tweets".format(tweet_id)
+    return f"https://api.twitter.com/2/tweets/{tweet_id}/quote_tweets"
 
 
 def get_params():
@@ -28,8 +28,7 @@ def get_params():
 
 
 def create_headers(bearer_token):
-    headers = {"Authorization": "Bearer {}".format(bearer_token)}
-    return headers
+    return {"Authorization": f"Bearer {bearer_token}"}
 
 
 def connect_to_endpoint(url, headers, params):
@@ -37,10 +36,9 @@ def connect_to_endpoint(url, headers, params):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 
