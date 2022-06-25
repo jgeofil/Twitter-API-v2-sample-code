@@ -21,7 +21,7 @@ def create_url():
     id = "your-user-id"
     # You can adjust ids to include a single Tweets.
     # Or you can add to up to 100 comma-separated IDs
-    url = "https://api.twitter.com/2/users/{}/liked_tweets".format(id)
+    url = f"https://api.twitter.com/2/users/{id}/liked_tweets"
     return url, tweet_fields
 
 
@@ -41,10 +41,9 @@ def connect_to_endpoint(url, tweet_fields):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

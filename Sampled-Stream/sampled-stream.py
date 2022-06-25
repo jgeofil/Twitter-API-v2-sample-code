@@ -30,9 +30,7 @@ def connect_to_endpoint(url):
             print(json.dumps(json_response, indent=4, sort_keys=True))
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
 
 

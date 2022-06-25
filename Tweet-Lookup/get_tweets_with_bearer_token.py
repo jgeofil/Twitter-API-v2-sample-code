@@ -17,10 +17,7 @@ def create_url():
     # possibly_sensitive, promoted_metrics, public_metrics, referenced_tweets,
     # source, text, and withheld
     ids = "ids=1278747501642657792,1255542774432063488"
-    # You can adjust ids to include a single Tweets.
-    # Or you can add to up to 100 comma-separated IDs
-    url = "https://api.twitter.com/2/tweets?{}&{}".format(ids, tweet_fields)
-    return url
+    return f"https://api.twitter.com/2/tweets?{ids}&{tweet_fields}"
 
 
 def bearer_oauth(r):
@@ -38,10 +35,9 @@ def connect_to_endpoint(url):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

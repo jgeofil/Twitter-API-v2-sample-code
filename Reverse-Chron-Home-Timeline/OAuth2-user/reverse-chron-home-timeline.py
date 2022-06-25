@@ -83,8 +83,9 @@ access = token["access_token"]
 user_me = requests.request(
     "GET",
     "https://api.twitter.com/2/users/me",
-    headers={"Authorization": "Bearer {}".format(access)},
+    headers={"Authorization": f"Bearer {access}"},
 ).json()
+
 
 # 
 #
@@ -95,18 +96,21 @@ user_me = requests.request(
 # Set the user. This defaults to the ID of the authorizing user. 
 user_id = user_me["data"]["id"]
 
-# Set the url. 
-url = "https://api.twitter.com/2/users/{}/timelines/reverse_chronological".format(user_id)
+# Set the url.
+url = f"https://api.twitter.com/2/users/{user_id}/timelines/reverse_chronological"
+
 
 headers = {
-    "Authorization": "Bearer {}".format(access),
+    "Authorization": f"Bearer {access}",
     "User-Agent": "ReverseChronSampleCode",
 }
+
 response = requests.request("GET", url, headers=headers)
 if response.status_code != 200:
     raise Exception(
-        "Request returned an error: {} {}".format(response.status_code, response.text)
+        f"Request returned an error: {response.status_code} {response.text}"
     )
-print("Response code: {}".format(response.status_code))
+
+print(f"Response code: {response.status_code}")
 json_response = response.json()
 print(json.dumps(json_response, indent=4, sort_keys=True))

@@ -13,11 +13,10 @@ query_params = {'ids': 'SPACE_ID', 'space.fields': 'title,created_at', 'expansio
 
 
 def create_headers(bearer_token):
-    headers = {
-        "Authorization": "Bearer {}".format(bearer_token),
-        "User-Agent": "v2SpacesLookupPython"
+    return {
+        "Authorization": f"Bearer {bearer_token}",
+        "User-Agent": "v2SpacesLookupPython",
     }
-    return headers
 
 
 def connect_to_endpoint(url, headers, params):

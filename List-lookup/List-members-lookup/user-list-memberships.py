@@ -14,7 +14,7 @@ def create_url():
     list_fields = "list.fields=created_at,follower_count"
     # You can replace the user-id with any valid User ID you wish to find what Lists they are members of.
     id = "user-id"
-    url = "https://api.twitter.com/2/users/{}/list_memberships".format(id)
+    url = f"https://api.twitter.com/2/users/{id}/list_memberships"
     return url, list_fields
 
 
@@ -33,10 +33,9 @@ def connect_to_endpoint(url, list_fields):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 

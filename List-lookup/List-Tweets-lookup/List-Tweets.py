@@ -18,7 +18,7 @@ def create_url():
     tweet_fields = "tweet.fields=lang,author_id"
     # Be sure to replace list-id with any List ID
     id = "list-id"
-    url = "https://api.twitter.com/2/lists/{}/tweets".format(id)
+    url = f"https://api.twitter.com/2/lists/{id}/tweets"
     return url, tweet_fields
 
 
@@ -38,10 +38,9 @@ def connect_to_endpoint(url, tweet_fields):
     print(response.status_code)
     if response.status_code != 200:
         raise Exception(
-            "Request returned an error: {} {}".format(
-                response.status_code, response.text
-            )
+            f"Request returned an error: {response.status_code} {response.text}"
         )
+
     return response.json()
 
 
